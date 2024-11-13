@@ -29,7 +29,6 @@ import triarchPraetorian from './images/triarch_praetorian.jpg';
 import tyranidWarrior from './images/tyranid_warrior.jpg';
 import orkBoy from './images/ork_boy.jpg';
 
-
 const imageOptions = [
   { name: 'enjambresCanopticos', src: enjambresCanopticos },
   { name: 'guerreroNecron', src: guerreroNecron },
@@ -76,6 +75,7 @@ const SelectorNPO = ({ onAdd }) => {
   const [tipo, setTipo] = useState("cuerpoACuerpo");
   const [unidad, setUnidad] = useState(npoData[tipo][0]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showImages, setShowImages] = useState(false);  // Estado para controlar la visibilidad
 
   const handleTipoChange = (e) => {
     const selectedTipo = e.target.value;
@@ -97,10 +97,47 @@ const SelectorNPO = ({ onAdd }) => {
     setSelectedImage(src);
   };
 
+  const toggleImageOptions = () => {
+    setShowImages(prevState => !prevState);  // Alternar visibilidad
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column'}}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <h3>Seleccionar Unidad NPO</h3>
-      
+
+      {/* Botón para mostrar/ocultar imágenes */}
+      <button onClick={toggleImageOptions}>
+        {showImages ? 'Ocultar Imágenes' : 'Mostrar Imágenes'}
+      </button>
+
+      {/* Selección de Imagen */}
+      {showImages && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
+          {imageOptions.map((image) => (
+            <label key={image.name} style={{ cursor: 'pointer' }}>
+              <input
+                type="radio"
+                name="selectedImage"
+                value={image.src}
+                checked={selectedImage === image.src}
+                onChange={() => handleImageSelect(image.src)}
+                style={{ display: 'none' }}
+              />
+              <img
+                src={image.src}
+                alt={image.name}
+                style={{
+                  width: '100px',
+                  height: '100px',
+                  border: selectedImage === image.src ? '3px solid var(--naranja-brillante)' : '3px solid transparent',
+                  borderRadius: '5px',
+                }}
+              />
+            </label>
+          ))}
+        </div>
+      )}
+
       {/* Tipo */}
       <div style={{ marginBottom: '10px' }}>
         <span>Tipo:</span>
@@ -141,35 +178,8 @@ const SelectorNPO = ({ onAdd }) => {
         </select>
       </div>
 
-      {/* Selección de Imagen */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
-        {imageOptions.map((image) => (
-          <label key={image.name} style={{ cursor: 'pointer' }}>
-            <input
-              type="radio"
-              name="selectedImage"
-              value={image.src}
-              checked={selectedImage === image.src}
-              onChange={() => handleImageSelect(image.src)}
-              style={{ display: 'none' }}
-            />
-            <img
-              src={image.src}
-              alt={image.name}
-              style={{
-                width: '100px',
-                height: '100px',
-                border: selectedImage === image.src ? '3px solid var(--naranja-brillante)' : '3px solid transparent',
-                borderRadius: '5px',
-              }}
-            />
-          </label>
-        ))}
-      </div>
-
-      <button onClick={handleAdd}>
-        Agregar Unidad
-      </button>
+      {/* Botón de añadir */}
+      <button onClick={handleAdd}>Añadir Unidad</button>
     </div>
   );
 };
