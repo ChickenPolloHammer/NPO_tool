@@ -92,9 +92,9 @@ const ListaNPO = () => {
   return (
     <div>
       <SelectorNPO onAdd={handleAddNPO} />
-  
+
       <h4>Total de Heridas: {totalHeridas}</h4>
-  
+
       {/* Selector para elegir el criterio de orden */}
       <div>
         <label htmlFor="sortBy">Ordenar por:</label>
@@ -118,16 +118,17 @@ const ListaNPO = () => {
         {sortedNpoList.map((npo) => (
           <li
             className="npo-item"
-            key={npo.id}
+            key={npo.id} // Usar el ID único como key
+            style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
           >
-            {npo.image && <img src={npo.image} alt="NPO Image" className="image" />}
+            {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px' }} />}
             {npo.tipo} - {npo.heridas} heridas
-            <button className="stats-button" onClick={() => handleStatsClick(npo.tipo)}>Stats</button>
-            <button className="delete-button" onClick={() => handleDeleteNPO(npo.id)}>Eliminar</button>
+            <button onClick={() => handleStatsClick(npo.tipo)}>Stats</button>
+            <button onClick={() => handleDeleteNPO(npo.id)} className="delete-button">Eliminar</button>
           </li>
         ))}
       </ul>
-  
+
       {/* Si se ha seleccionado una imagen, mostrarla a pantalla completa */}
       {selectedImage && (
         <div className="overlay" onClick={handleCloseImage}>
@@ -136,7 +137,7 @@ const ListaNPO = () => {
         </div>
       )}
     </div>
-  );  
+  );
 };
 
 
