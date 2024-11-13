@@ -95,10 +95,19 @@ const SelectorNPO = ({ onAdd }) => {
 
   const handleImageSelect = (src) => {
     setSelectedImage(src);
+    setShowImages(false);
   };
 
   const toggleImageOptions = () => {
     setShowImages(prevState => !prevState);  // Alternar visibilidad
+  };
+
+  const handleSelectedImageClick = () => {
+    if (showImages) {
+      setShowImages(false);  // Ocultar imágenes si ya están visibles
+    } else {
+      setShowImages(true);  // Mostrar imágenes si no están visibles
+    }
   };
 
   return (
@@ -109,6 +118,25 @@ const SelectorNPO = ({ onAdd }) => {
       <button onClick={toggleImageOptions}>
         {showImages ? 'Ocultar Imágenes' : 'Mostrar Imágenes'}
       </button>
+
+      {/* Mostrar imagen seleccionada solo cuando no se están mostrando las opciones de imágenes */}
+      {!showImages && selectedImage && (
+        <div style={{ marginTop: '10px' }}>
+          <h4>Imagen seleccionada:</h4>
+          <img
+            src={selectedImage}
+            alt="Imagen seleccionada"
+            style={{
+              width: '100px',
+              height: '100px',
+              border: '3px solid var(--naranja-brillante)',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+            onClick={handleSelectedImageClick}  // Maneja el clic en la imagen
+          />
+        </div>
+      )}
 
       {/* Selección de Imagen */}
       {showImages && (
