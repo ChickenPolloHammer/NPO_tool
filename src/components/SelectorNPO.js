@@ -121,7 +121,7 @@ const SelectorNPO = ({ onAdd }) => {
 
       {/* Botón para mostrar/ocultar imágenes */}
       <button onClick={toggleImageOptions}>
-        {showImages ? 'Ocultar Imágenes' : 'Mostrar Imágenes'}
+        {showImages ? 'Ocultar Imágenes' : 'Seleccionar Imágenes'}
       </button>
 
       {/* Mostrar imagen seleccionada solo cuando no se están mostrando las opciones de imágenes */}
