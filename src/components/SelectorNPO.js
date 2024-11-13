@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import knifeImage from './images/knife.png';
 import bulletImage from './images/bullet.png';
-import soldadoLuchadorStatsKt from './images/soldado_luchador_stats_KT.jpg';
-import luchadorDuroStatsKt from './images/luchador_duro_stats_KT.jpg';
-import luchadorPesadoStatsKt from './images/luchador_pesado_stats_KT.jpg';
-import soldadoTiradorStatsKt from './images/soldado_tirador_stats_KT.jpg';
-import guerreroTiradorStatsKt from './images/guerrero_tirador_stats_KT.jpg';
-import tiradorPesadoStatsKt from './images/tirador_pesado_stats_KT.jpg';
+
 import enjambresCanopticos from './images/enjambres_canopticos.jpg';
 import guerreroNecron from './images/guerrero_necron.jpg';
 import destructorSkorpekh from './images/destructor_skorpekh.jpg';
