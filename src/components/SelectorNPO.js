@@ -108,6 +108,11 @@ const SelectorNPO = ({ onAdd }) => {
     } else {
       setShowImages(true);  // Mostrar imágenes si no están visibles
     }
+  
+    // Descartar la selección previa al hacer clic en la imagen seleccionada
+    if (selectedImage) {
+      setSelectedImage(null);  // Descartar la imagen seleccionada
+    }
   };
 
   return (
