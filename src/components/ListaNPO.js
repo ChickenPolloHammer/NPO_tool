@@ -92,9 +92,9 @@ const ListaNPO = () => {
   return (
     <div>
       <SelectorNPO onAdd={handleAddNPO} />
-
+  
       <h4>Total de Heridas: {totalHeridas}</h4>
-
+  
       {/* Selector para elegir el criterio de orden */}
       <div>
         <label htmlFor="sortBy">Ordenar por:</label>
@@ -118,69 +118,27 @@ const ListaNPO = () => {
         {sortedNpoList.map((npo) => (
           <li
             className="npo-item"
-            key={npo.id} // Usar el ID único como key
-            style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+            key={npo.id}
           >
-            {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px' }} />}
+            {npo.image && <img src={npo.image} alt="NPO Image" className="image" />}
             {npo.tipo} - {npo.heridas} heridas
-            <button onClick={() => handleStatsClick(npo.tipo)}>Stats</button>
-            <button onClick={() => handleDeleteNPO(npo.id)} style={deleteButtonStyles}>Eliminar</button>
+            <button className="stats-button" onClick={() => handleStatsClick(npo.tipo)}>Stats</button>
+            <button className="delete-button" onClick={() => handleDeleteNPO(npo.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
-
+  
       {/* Si se ha seleccionado una imagen, mostrarla a pantalla completa */}
       {selectedImage && (
-        <div style={overlayStyles} onClick={handleCloseImage}>
-          <img src={selectedImage} alt="Stat Image" style={imageStyles} />
-          <button style={closeButtonStyles} onClick={handleCloseImage}>Cerrar</button>
+        <div className="overlay" onClick={handleCloseImage}>
+          <img src={selectedImage} alt="Stat Image" className="image" />
+          <button className="close-button" onClick={handleCloseImage}>Cerrar</button>
         </div>
       )}
     </div>
-  );
+  );  
 };
 
-// Estilos para el overlay y la imagen a pantalla completa
-const overlayStyles = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  zIndex: 1000,
-  cursor: 'pointer',
-};
 
-const imageStyles = {
-  maxWidth: '90%',
-  maxHeight: '90%',
-  borderRadius: '10px',
-};
-
-const closeButtonStyles = {
-  position: 'absolute',
-  top: '10px',
-  right: '10px',
-  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  color: 'white',
-  border: 'none',
-  borderRadius: '5px',
-  padding: '5px 10px',
-  cursor: 'pointer',
-};
-
-const deleteButtonStyles = {
-  marginLeft: '10px',
-  backgroundColor: '#ff4444',
-  color: 'white',
-  border: 'none',
-  borderRadius: '5px',
-  padding: '5px 10px',
-  cursor: 'pointer',
-};
 
 export default ListaNPO;
