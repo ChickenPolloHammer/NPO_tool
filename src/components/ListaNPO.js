@@ -9,8 +9,8 @@ import tiradorPesadoStatsKt from './images/tirador_pesado_stats_KT.jpg';
 
 const ListaNPO = () => {
   const [npoList, setNpoList] = useState([]);
-  const [sortOrder, setSortOrder] = useState('ascendente'); // Orden por defecto
-  const [sortBy, setSortBy] = useState('heridas'); // Ordenar por heridas por defecto
+  const [sortOrder, setSortOrder] = useState('descendente'); // Orden por defecto
+  const [sortBy, setSortBy] = useState('fechaEntrada'); // Ordenar por defecto
   const [selectedImage, setSelectedImage] = useState(null); // Para almacenar la imagen seleccionada
 
   const handleAddNPO = (npo) => {
@@ -93,27 +93,35 @@ const ListaNPO = () => {
     <div>
       <SelectorNPO onAdd={handleAddNPO} />
 
-      <h4>Total de Heridas: {totalHeridas}</h4>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
+        <div>
+          <h3>Lista de NPOs</h3>
+          <h4>Total de Heridas: {totalHeridas}</h4>
+        </div>
 
-      {/* Selector para elegir el criterio de orden */}
-      <div>
-        <label htmlFor="sortBy">Ordenar por:</label>
-        <select id="sortBy" value={sortBy} onChange={handleSortByChange}>
-          <option value="heridas">Heridas</option>
-          <option value="fechaEntrada">Fecha de Entrada</option>
-        </select>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '30px'}}>
+          {/* Selector para elegir el criterio de orden */}
+          <div>
+            <label htmlFor="sortBy">Ordenar por:</label>
+            <select id="sortBy" value={sortBy} onChange={handleSortByChange}>
+              <option value="fechaEntrada">Fecha</option>
+              <option value="heridas">Heridas</option>
+            </select>
+          </div>
+          
+          {/* Selector para cambiar el orden */}
+          <div>
+            <label htmlFor="sortOrder">Ordenar por:</label>
+            <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+              <option value="descendente">Des.</option>
+              <option value="ascendente">Asc.</option>
+            </select>
+          </div>
+        </div>
       </div>
+
       
-      {/* Selector para cambiar el orden */}
-      <div>
-        <label htmlFor="sortOrder">Ordenar por:</label>
-        <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-          <option value="ascendente">Ascendente</option>
-          <option value="descendente">Descendente</option>
-        </select>
-      </div>
-     
-      <h3>Lista de Unidades Seleccionadas</h3>
+      
       <ul className="npo-list">
         {sortedNpoList.map((npo) => (
           <li
