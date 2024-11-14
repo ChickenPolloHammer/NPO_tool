@@ -121,7 +121,7 @@ button:hover {
 
 /* Delete Button */
 .delete-button {
-  margin-left: 10px;
+  margin-left: 0px;
   background-color: #ff4444;
   color: white;
   border: none;
