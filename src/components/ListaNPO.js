@@ -127,15 +127,16 @@ const ListaNPO = () => {
       <ul className="npo-list">
         {sortedNpoList.map((npo) => (
           <li
-            className="npo-item"
-            key={npo.id} // Usar el ID único como key
-            style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-          >
-            {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px' }} />}
-            {npo.tipo} - {npo.heridas} heridas
-            <button onClick={() => handleStatsClick(npo.tipo)}>Stats</button>
-            <button onClick={() => handleDeleteNPO(npo.id)} className="delete-button">Eliminar</button>
-          </li>
+          className="npo-item"
+          key={npo.id} // Usar el ID único como key
+          style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+        >
+          {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px' }} />}
+          {npo.tipo} - Heridas: {npo.heridas}
+          <button onClick={() => handleStatsClick(npo.tipo)} style={{ marginLeft: 'auto' }}>Stats</button>
+          <button onClick={() => handleDeleteNPO(npo.id)} className="delete-button">Eliminar</button>
+        </li>
+        
         ))}
       </ul>
 
