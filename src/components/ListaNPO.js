@@ -96,7 +96,7 @@ const ListaNPO = () => {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
         <div>
-          <h3>Lista de NPOs</h3>
+        <h3 style={{ textDecoration: 'underline' }}>Lista de NPOs</h3>
           <label style={{ display: 'block' }}>Total de Heridas: {totalHeridas}</label>
           <label style={{ display: 'block' }}>Total de NPOs: {totalNPOs}</label>
         </div>

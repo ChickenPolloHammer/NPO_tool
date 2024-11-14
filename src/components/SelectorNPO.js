@@ -117,7 +117,7 @@ const SelectorNPO = ({ onAdd }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h3>Seleccionar Unidad NPO</h3>
+      <h3 style={{ textDecoration: 'underline' }}>Seleccionar NPO</h3>
 
       {/* Botón para mostrar/ocultar imágenes */}
       <button onClick={toggleImageOptions}>
@@ -219,7 +219,7 @@ const SelectorNPO = ({ onAdd }) => {
       </div>
 
       {/* Botón de añadir */}
-      <button onClick={handleAdd}>Añadir Unidad</button>
+      <button onClick={handleAdd}>Añadir NPO</button>
     </div>
   );
 };
