@@ -132,7 +132,11 @@ const ListaNPO = () => {
           style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
         >
           {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px' }} />}
-          {npo.tipo} - Heridas: {npo.heridas}
+          <div>
+            <strong>{npo.tipo}</strong>
+            <br />
+            Heridas: {npo.heridas}
+          </div>
           <button onClick={() => handleStatsClick(npo.tipo)} style={{ marginLeft: 'auto' }}>Stats</button>
           <button onClick={() => handleDeleteNPO(npo.id)} className="delete-button">Eliminar</button>
         </li>
