@@ -48,6 +48,7 @@ const ListaNPO = () => {
   });
 
   const totalHeridas = sortedNpoList.reduce((total, npo) => total + npo.heridas, 0);
+  const totalNPOs = sortedNpoList.reduce((total, npo) => ++total, 0);
 
   // Función para manejar el clic en el botón "Stats"
   const handleStatsClick = (tipo) => {
@@ -96,10 +97,11 @@ const ListaNPO = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
         <div>
           <h3>Lista de NPOs</h3>
-          <h4>Total de Heridas: {totalHeridas}</h4>
+          <label style={{ display: 'block' }}>Total de Heridas: {totalHeridas}</label>
+          <label style={{ display: 'block' }}>Total de NPOs: {totalNPOs}</label>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '30px'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '55px'}}>
           {/* Selector para elegir el criterio de orden */}
           <div>
             <label htmlFor="sortBy">Ordenar por:</label>
