@@ -124,91 +124,98 @@ const SelectorNPO = ({ onAdd }) => {
         {showImages ? 'Ocultar Imágenes' : 'Seleccionar Imágenes'}
       </button>
 
-      {/* Mostrar imagen seleccionada solo cuando no se están mostrando las opciones de imágenes */}
-      {!showImages && selectedImage && (
-        <div style={{ marginTop: '10px' }}>
-          <h4>Imagen seleccionada:</h4>
-          <img
-            src={selectedImage}
-            alt="Imagen seleccionada"
-            style={{
-              width: '100px',
-              height: '100px',
-              border: '3px solid var(--naranja-brillante)',
-              borderRadius: '5px',
-              cursor: 'pointer',
-            }}
-            onClick={handleSelectedImageClick}  // Maneja el clic en la imagen
-          />
-        </div>
-      )}
-
       {/* Selección de Imagen */}
-      {showImages && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
-          {imageOptions.map((image) => (
-            <label key={image.name} style={{ cursor: 'pointer' }}>
+        {showImages && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginLeft: '0px' }}>
+            {imageOptions.map((image) => (
+              <label key={image.name} style={{ cursor: 'pointer' }}>
+                <input
+                  type="radio"
+                  name="selectedImage"
+                  value={image.src}
+                  checked={selectedImage === image.src}
+                  onChange={() => handleImageSelect(image.src)}
+                  style={{ display: 'none' }}
+                />
+                <img
+                  src={image.src}
+                  alt={image.name}
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    border: selectedImage === image.src ? '3px solid var(--naranja-brillante)' : '3px solid transparent',
+                    borderRadius: '5px',
+                  }}
+                />
+              </label>
+            ))}
+          </div>
+        )}
+
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: '20px' }}>
+        {/* Contenedor para Tipo y Rango */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Tipo */}
+          <div>
+            <span>Tipo:</span>
+            <label style={{ display: 'block' }}>
               <input
                 type="radio"
-                name="selectedImage"
-                value={image.src}
-                checked={selectedImage === image.src}
-                onChange={() => handleImageSelect(image.src)}
-                style={{ display: 'none' }}
+                name="tipo"
+                value="cuerpoACuerpo"
+                checked={tipo === 'cuerpoACuerpo'}
+                onChange={handleTipoChange}
               />
-              <img
-                src={image.src}
-                alt={image.name}
-                style={{
-                  width: '100px',
-                  height: '100px',
-                  border: selectedImage === image.src ? '3px solid var(--naranja-brillante)' : '3px solid transparent',
-                  borderRadius: '5px',
-                }}
-              />
+              <img src={knifeImage} alt="Cuerpo a Cuerpo" style={{ width: '24px', marginLeft: '8px', marginRight: '8px' }} />
+              Luchador
             </label>
-          ))}
+
+            <label style={{ display: 'block' }}>
+              <input
+                type="radio"
+                name="tipo"
+                value="disparos"
+                checked={tipo === 'disparos'}
+                onChange={handleTipoChange}
+              />
+              <img src={bulletImage} alt="Disparos" style={{ width: '24px', marginLeft: '8px', marginRight: '8px' }} />
+              Tirador
+            </label>
+          </div>
+
+          {/* Rango */}
+          <div style={{ marginBottom: '10px' }}>
+            <span>Rango:</span>
+            <select value={unidad.tipo} onChange={handleUnidadChange}>
+              {npoData[tipo].map((u, index) => (
+                <option key={index} value={u.tipo}>
+                  {u.tipo} - {u.heridas} heridas
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      )}
 
-      {/* Tipo */}
-      <div style={{ marginBottom: '10px' }}>
-        <span>Tipo:</span>
-        <label style={{ display: 'block' }}>
-          <input
-            type="radio"
-            name="tipo"
-            value="cuerpoACuerpo"
-            checked={tipo === 'cuerpoACuerpo'}
-            onChange={handleTipoChange}
-          />
-          <img src={knifeImage} alt="Cuerpo a Cuerpo" style={{ width: '24px', marginLeft: '8px' }} />
-          Luchador
-        </label>
-
-        <label style={{ display: 'block' }}>
-          <input
-            type="radio"
-            name="tipo"
-            value="disparos"
-            checked={tipo === 'disparos'}
-            onChange={handleTipoChange}
-          />
-          <img src={bulletImage} alt="Disparos" style={{ width: '24px', marginLeft: '8px' }} />
-          Tirador
-        </label>
-      </div>
-
-      {/* Rango */}
-      <div style={{ marginBottom: '10px' }}>
-        <span>Rango:</span>
-        <select value={unidad.tipo} onChange={handleUnidadChange}>
-          {npoData[tipo].map((u, index) => (
-            <option key={index} value={u.tipo}>
-              {u.tipo} - {u.heridas} heridas
-            </option>
-          ))}
-        </select>
+        {/* Mostrar imagen seleccionada solo cuando no se están mostrando las opciones de imágenes */}
+        {!showImages && selectedImage && (
+          <div style={{ marginTop: '5px' }}>
+            <span>Imagen seleccionada:</span>
+            <img
+              src={selectedImage}
+              alt="Imagen seleccionada"
+              style={{
+                width: '100px',
+                height: '100px',
+                border: '3px solid var(--naranja-brillante)',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                display: 'block',
+                margin: '5px',
+              }}
+              onClick={handleSelectedImageClick}  // Maneja el clic en la imagen
+            />
+          </div>
+        )}
       </div>
 
       {/* Botón de añadir */}
