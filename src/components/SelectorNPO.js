@@ -117,16 +117,16 @@ const SelectorNPO = ({ onAdd }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h3 style={{ textDecoration: 'underline' }}>Seleccionar NPO</h3>
+      {/* <h3 style={{ textDecoration: 'underline' }}>Elegir NPO</h3>*/}
 
       {/* Botón para mostrar/ocultar imágenes */}
       <button onClick={toggleImageOptions}>
-        {showImages ? 'Ocultar Imágenes' : 'Seleccionar Imágenes'}
+        {showImages ? 'Ocultar imágenes' : 'Seleccionar imágen'}
       </button>
 
       {/* Selección de Imagen */}
         {showImages && (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginLeft: '0px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', alignItems: 'center', marginTop: '5px' }}>
             {imageOptions.map((image) => (
               <label key={image.name} style={{ cursor: 'pointer' }}>
                 <input
@@ -166,7 +166,7 @@ const SelectorNPO = ({ onAdd }) => {
                 checked={tipo === 'cuerpoACuerpo'}
                 onChange={handleTipoChange}
               />
-              <img src={knifeImage} alt="Cuerpo a Cuerpo" style={{ width: '24px', marginLeft: '8px', marginRight: '8px' }} />
+              <img src={knifeImage} alt="Cuerpo a Cuerpo" style={{ width: '24px', marginLeft: '8px', marginRight: '8px', marginTop: '5px' }} />
               Luchador
             </label>
 
@@ -198,8 +198,8 @@ const SelectorNPO = ({ onAdd }) => {
 
         {/* Mostrar imagen seleccionada solo cuando no se están mostrando las opciones de imágenes */}
         {!showImages && selectedImage && (
-          <div style={{ marginTop: '5px' }}>
-            <span>Imagen seleccionada:</span>
+          <div style={{ marginTop: '10px' }}>
+            {/*<span>Imagen seleccionada:</span>*/}
             <img
               src={selectedImage}
               alt="Imagen seleccionada"

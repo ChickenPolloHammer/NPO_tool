@@ -5,7 +5,8 @@ import './App.css';
 function App() {
   return (
     <div className="container">
-      <h1 style={{ color: 'var(--naranja-brillante)' }}>Herramienta de Listas NPO para Kill Team</h1>
+      <div className="containerTitulo"><h1>Crea tu Lista de NPOs</h1></div>
+      
       <ListaNPO />
     </div>
   );
