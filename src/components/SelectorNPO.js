@@ -123,19 +123,30 @@ const SelectorNPO = ({ onAdd }) => {
     }
   };
 
+  const triggerFileInput = () => {
+    // Disparar el clic en el input oculto
+    document.getElementById('fileInput').click();
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {/* <h3 style={{ textDecoration: 'underline' }}>Elegir NPO</h3>*/}
       {/* Botón para sacar/seleccionar imágen del dispositivo */}
+      <button
+        onClick={triggerFileInput}>
+        Seleccionar imágen del dispositivo
+      </button>
+      {/* Input oculto */}
       <input
+        id="fileInput"
         type="file"
         accept="image/*"
-        capture="environment" // Permite usar la cámara si está disponible
         onChange={handleImageUpload}
+        style={{ display: 'none' }}
       />
       {/* Botón para mostrar/ocultar imágenes */}
       <button onClick={toggleImageOptions}>
-        {showImages ? 'Ocultar imágenes' : 'Seleccionar imágen'}
+        {showImages ? 'Ocultar imágenes' : 'Seleccionar imágen predefinida'}
       </button>
 
       {/* Selección de Imagen */}

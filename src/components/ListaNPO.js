@@ -101,7 +101,7 @@ const ListaNPO = () => {
           <label style={{ display: 'block' }}>Total de NPOs: {totalNPOs}</label>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '55px'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '59px'}}>
           {/* Selector para elegir el criterio de orden */}
           <div>
             <label htmlFor="sortBy">Ordenar por:</label>
