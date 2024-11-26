@@ -115,10 +115,24 @@ const SelectorNPO = ({ onAdd }) => {
     }
   };
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
+    }
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {/* <h3 style={{ textDecoration: 'underline' }}>Elegir NPO</h3>*/}
-
+      {/* Botón para sacar/seleccionar imágen del dispositivo */}
+      <input
+        type="file"
+        accept="image/*"
+        capture="environment" // Permite usar la cámara si está disponible
+        onChange={handleImageUpload}
+      />
       {/* Botón para mostrar/ocultar imágenes */}
       <button onClick={toggleImageOptions}>
         {showImages ? 'Ocultar imágenes' : 'Seleccionar imágen'}
