@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import SelectorNPO from './SelectorNPO';
+import { useTranslation } from 'react-i18next';
 import soldadoLuchadorStatsKt from './images/soldado_luchador_stats_KT.jpg';
 import luchadorDuroStatsKt from './images/luchador_duro_stats_KT.jpg';
 import luchadorPesadoStatsKt from './images/luchador_pesado_stats_KT.jpg';
 import soldadoTiradorStatsKt from './images/soldado_tirador_stats_KT.jpg';
 import guerreroTiradorStatsKt from './images/guerrero_tirador_stats_KT.jpg';
 import tiradorPesadoStatsKt from './images/tirador_pesado_stats_KT.jpg';
+import trooperBrawlerStatsKt from './images/trooper_brawler_stats_KT.jpg';
+import toughBrawlerStatsKt from './images/tough_brawler_stats_KT.jpg';
+import heavyBrawlerStatsKt from './images/heavy_brawler_stats_KT.jpg';
+import trooperMarksmanStatsKt from './images/trooper_marksman_stats_KT.jpg';
+import warriorMarksmanStatsKt from './images/warrior_marksman_stats_KT.jpg';
+import heavyMarksmanStatsKt from './images/heavy_marksman_stats_KT.jpg';
 
 const ListaNPO = () => {
+  const { t } = useTranslation();
   const [npoList, setNpoList] = useState([]);
   const [sortOrder, setSortOrder] = useState('descendente'); // Orden por defecto
   const [sortBy, setSortBy] = useState('fechaEntrada'); // Ordenar por defecto
@@ -54,23 +62,41 @@ const ListaNPO = () => {
   const handleStatsClick = (tipo) => {
     // Asignar la imagen correspondiente según el tipo
     switch (tipo) {
-      case 'Soldado Luchador':
+      case 'Peleador Soldado':
         setSelectedImage(soldadoLuchadorStatsKt);
         break;
-      case 'Luchador Duro':
+      case 'Peleador Recio':
         setSelectedImage(luchadorDuroStatsKt);
         break;
-      case 'Luchador Pesado':
+      case 'Peleador Pesado':
         setSelectedImage(luchadorPesadoStatsKt);
         break;
-      case 'Soldado Tirador':
+      case 'Tirador Soldado':
         setSelectedImage(soldadoTiradorStatsKt);
         break;
-      case 'Guerrero Tirador':
+      case 'Tirador Combatiente':
         setSelectedImage(guerreroTiradorStatsKt);
         break;
       case 'Tirador Pesado':
         setSelectedImage(tiradorPesadoStatsKt);
+        break;
+      case 'Trooper Brawler':
+        setSelectedImage(trooperBrawlerStatsKt);
+        break;
+      case 'Tough Brawler':
+        setSelectedImage(toughBrawlerStatsKt);
+        break;
+      case 'Heavy Brawler':
+        setSelectedImage(heavyBrawlerStatsKt);
+        break;
+      case 'Trooper Marksman':
+        setSelectedImage(trooperMarksmanStatsKt);
+        break;
+      case 'Warrior Marksman':
+        setSelectedImage(warriorMarksmanStatsKt);
+        break;
+      case 'Heavy Marksman':
+        setSelectedImage(heavyMarksmanStatsKt);
         break;
       default:
         setSelectedImage(null);
@@ -96,27 +122,27 @@ const ListaNPO = () => {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
         <div>
-        <h3 style={{ textDecoration: 'underline' }}>Lista de NPOs</h3>
-          <label style={{ display: 'block' }}>Total de Heridas: {totalHeridas}</label>
-          <label style={{ display: 'block' }}>Total de NPOs: {totalNPOs}</label>
+        <h3 style={{ textDecoration: 'underline' }}>{t('NPOList')}</h3>
+          <label style={{ display: 'block' }}>{t('totalWounds')}: {totalHeridas}</label>
+          <label style={{ display: 'block' }}>{t('totalNPOs')}: {totalNPOs}</label>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', marginTop: '59px'}}>
           {/* Selector para elegir el criterio de orden */}
           <div>
-            <label htmlFor="sortBy">Ordenar por:</label>
+            <label htmlFor="sortBy">{t('sortBy')}</label>
             <select id="sortBy" value={sortBy} onChange={handleSortByChange}>
-              <option value="fechaEntrada">Fecha</option>
-              <option value="heridas">Heridas</option>
+              <option value="fechaEntrada">{t('date')}</option>
+              <option value="heridas">{t('wounds')}</option>
             </select>
           </div>
           
           {/* Selector para cambiar el orden */}
           <div>
-            <label htmlFor="sortOrder">Ordenar por:</label>
+            <label htmlFor="sortOrder">{t('sortBy')}</label>
             <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-              <option value="descendente">Des.</option>
-              <option value="ascendente">Asc.</option>
+              <option value="descendente">{t('descending')}</option>
+              <option value="ascendente">{t('ascending')}</option>
             </select>
           </div>
         </div>
@@ -135,10 +161,10 @@ const ListaNPO = () => {
           <div>
             <strong>{npo.tipo}</strong>
             <br />
-            Heridas: {npo.heridas}
+            {t('wounds')}: {npo.heridas}
           </div>
-          <button onClick={() => handleStatsClick(npo.tipo)} style={{ marginLeft: 'auto' }}>Stats</button>
-          <button onClick={() => handleDeleteNPO(npo.id)} className="delete-button">Eliminar</button>
+          <button onClick={() => handleStatsClick(npo.tipo)} style={{ marginLeft: 'auto' }}>{t('stats')}</button>
+          <button onClick={() => handleDeleteNPO(npo.id)} className="delete-button">{t('remove')}</button>
         </li>
         
         ))}
@@ -148,7 +174,7 @@ const ListaNPO = () => {
       {selectedImage && (
         <div className="overlay" onClick={handleCloseImage}>
           <img src={selectedImage} alt="Stat Image" className="image" />
-          <button className="close-button" onClick={handleCloseImage}>Cerrar</button>
+          <button className="close-button" onClick={handleCloseImage}>{t('close')}</button>
         </div>
       )}
     </div>

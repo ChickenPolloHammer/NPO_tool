@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import knifeImage from './images/knife.png';
 import bulletImage from './images/bullet.png';
 
@@ -58,20 +59,24 @@ const imageOptions = [
   { name: 'orkBoy', src: orkBoy },
 ];
 
-const npoData = {
-  cuerpoACuerpo: [
-    { tipo: "Soldado Luchador", rango: "Débil", heridas: 7 },
-    { tipo: "Luchador Duro", rango: "Medio", heridas: 10 },
-    { tipo: "Luchador Pesado", rango: "Duro", heridas: 14 }
-  ],
-  disparos: [
-    { tipo: "Soldado Tirador", rango: "Débil", heridas: 7 },
-    { tipo: "Guerrero Tirador", rango: "Medio", heridas: 8 },
-    { tipo: "Tirador Pesado", rango: "Duro", heridas: 14 }
-  ]
-};
+
 
 const SelectorNPO = ({ onAdd }) => {
+  const { t } = useTranslation();
+
+  const npoData = {
+    cuerpoACuerpo: [
+      { tipo: t('trooperBrawler'), rango: "Débil", heridas: 7 },
+      { tipo: t('toughBrawler'), rango: "Medio", heridas: 10 },
+      { tipo: t('heavyBrawler'), rango: "Duro", heridas: 14 }
+    ],
+    disparos: [
+      { tipo: t('trooperMarksman'), rango: "Débil", heridas: 7 },
+      { tipo: t('warriorMarksman'), rango: "Medio", heridas: 8 },
+      { tipo: t('heavyMarksman'), rango: "Duro", heridas: 14 }
+    ]
+  };
+
   const [tipo, setTipo] = useState("cuerpoACuerpo");
   const [unidad, setUnidad] = useState(npoData[tipo][0]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -134,7 +139,7 @@ const SelectorNPO = ({ onAdd }) => {
       {/* Botón para sacar/seleccionar imágen del dispositivo */}
       <button
         onClick={triggerFileInput}>
-        Seleccionar imágen del dispositivo
+        {t('chooseImage')}
       </button>
       {/* Input oculto */}
       <input
@@ -146,7 +151,7 @@ const SelectorNPO = ({ onAdd }) => {
       />
       {/* Botón para mostrar/ocultar imágenes */}
       <button onClick={toggleImageOptions}>
-        {showImages ? 'Ocultar imágenes' : 'Seleccionar imágen predefinida'}
+        {showImages ? t('hideImage') : t('predefinedImage')}
       </button>
 
       {/* Selección de Imagen */}
@@ -182,7 +187,7 @@ const SelectorNPO = ({ onAdd }) => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '10px' }}>
           {/* Tipo */}
           <div>
-            <span>Tipo:</span>
+            <span>{t('type')}:</span>
             <label style={{ display: 'block' }}>
               <input
                 type="radio"
@@ -192,7 +197,7 @@ const SelectorNPO = ({ onAdd }) => {
                 onChange={handleTipoChange}
               />
               <img src={knifeImage} alt="Cuerpo a Cuerpo" style={{ width: '24px', marginLeft: '8px', marginRight: '8px', marginTop: '5px' }} />
-              Luchador
+              {t('brawler')}
             </label>
 
             <label style={{ display: 'block' }}>
@@ -204,13 +209,13 @@ const SelectorNPO = ({ onAdd }) => {
                 onChange={handleTipoChange}
               />
               <img src={bulletImage} alt="Disparos" style={{ width: '24px', marginLeft: '8px', marginRight: '8px' }} />
-              Tirador
+              {t('marksman')}
             </label>
           </div>
 
           {/* Rango */}
           <div style={{ marginBottom: '10px' }}>
-            <span>Rango:</span>
+            <span>{t('rank')}:</span>
             <select value={unidad.tipo} onChange={handleUnidadChange}>
               {npoData[tipo].map((u, index) => (
                 <option key={index} value={u.tipo}>
@@ -244,7 +249,7 @@ const SelectorNPO = ({ onAdd }) => {
       </div>
 
       {/* Botón de añadir */}
-      <button onClick={handleAdd}>Añadir NPO</button>
+      <button onClick={handleAdd}>{t('addNPO')}</button>
     </div>
   );
 };
