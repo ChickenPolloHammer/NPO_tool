@@ -10,9 +10,9 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => changeLanguage('es')}>Español</button>
-      <button onClick={() => changeLanguage('en')}>English</button>
+    <div className="language-selector">
+      <button onClick={() => changeLanguage('es')} className="flag es" aria-label="Español" />
+      <button onClick={() => changeLanguage('en')} className="flag en" aria-label="English" />
     </div>
   );
 };

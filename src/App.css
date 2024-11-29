@@ -166,3 +166,24 @@ h1 {
   font-weight: 400;
   font-style: normal;  
 }
+
+.language-selector {
+  display: flex;
+  gap: 10px;
+}
+
+.flag {
+  width: 30px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+  background-size: cover;
+}
+
+.flag.es {
+  background-image: url('https://flagcdn.com/w40/es.png');
+}
+
+.flag.en {
+  background-image: url('https://flagcdn.com/w40/us.png');
+}
