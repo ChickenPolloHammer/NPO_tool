@@ -169,6 +169,7 @@ h1 {
 }
 
 .language-selector {
+  animation: fadeIn 1s ease-in-out;
   display: flex;
   justify-content: flex-end; /* Mueve los botones a la derecha */
   gap: 10px; /* Espacio entre los botones */
