@@ -170,7 +170,11 @@ h1 {
 
 .language-selector {
   display: flex;
-  gap: 10px;
+  justify-content: flex-end; /* Mueve los botones a la derecha */
+  gap: 10px; /* Espacio entre los botones */
+  position: fixed; /* Opcional: Mantiene los botones en su lugar */
+  top: 10px; /* Ajusta la posición desde la parte superior */
+  right: 10px; /* Ajusta la posición desde la parte derecha */
 }
 
 .flag {
