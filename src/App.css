@@ -55,6 +55,7 @@ body {
   max-width: 800px;
   margin: auto;
   padding: 20px;
+  padding-top: 0px;
 }
 
 .containerTitulo {
