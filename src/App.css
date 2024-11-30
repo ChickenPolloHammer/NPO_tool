@@ -193,3 +193,26 @@ h1 {
 .flag.en {
   background-image: url('https://flagcdn.com/w40/us.png');
 }
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  margin: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.radio-label.selected {
+  border-color: var(--naranja-brillante);
+}
+
+.radio-image {
+  width: 24px;
+  margin: 0 5px;
+}
+
+input[type='radio'] {
+  display: none; /* Oculta el radio button original */
+}

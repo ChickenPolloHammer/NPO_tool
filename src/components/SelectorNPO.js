@@ -184,11 +184,13 @@ const SelectorNPO = ({ onAdd }) => {
 
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {/* Contenedor para Tipo y Rango */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '10px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '5px', marginTop: '10px'}}>
           {/* Tipo */}
           <div>
             <span>{t('type')}:</span>
-            <label style={{ display: 'block' }}>
+            <label
+              className={`radio-label ${tipo === 'cuerpoACuerpo' ? 'selected' : ''}`}
+            >
               <input
                 type="radio"
                 name="tipo"
@@ -196,11 +198,17 @@ const SelectorNPO = ({ onAdd }) => {
                 checked={tipo === 'cuerpoACuerpo'}
                 onChange={handleTipoChange}
               />
-              <img src={knifeImage} alt="Cuerpo a Cuerpo" style={{ width: '24px', marginLeft: '8px', marginRight: '8px', marginTop: '5px' }} />
+              <img
+                src={knifeImage}
+                alt="Cuerpo a Cuerpo"
+                className="radio-image"
+              />
               {t('brawler')}
             </label>
 
-            <label style={{ display: 'block' }}>
+            <label
+              className={`radio-label ${tipo === 'disparos' ? 'selected' : ''}`}
+            >
               <input
                 type="radio"
                 name="tipo"
@@ -208,27 +216,19 @@ const SelectorNPO = ({ onAdd }) => {
                 checked={tipo === 'disparos'}
                 onChange={handleTipoChange}
               />
-              <img src={bulletImage} alt="Disparos" style={{ width: '24px', marginLeft: '8px', marginRight: '8px' }} />
+              <img
+                src={bulletImage}
+                alt="Disparos"
+                className="radio-image"
+              />
               {t('marksman')}
             </label>
-          </div>
-
-          {/* Rango */}
-          <div style={{ marginBottom: '10px' }}>
-            <span>{t('rank')}:</span>
-            <select value={unidad.tipo} onChange={handleUnidadChange}>
-              {npoData[tipo].map((u, index) => (
-                <option key={index} value={u.tipo}>
-                  {u.tipo} - {u.heridas} heridas
-                </option>
-              ))}
-            </select>
           </div>
         </div>
 
         {/* Mostrar imagen seleccionada solo cuando no se están mostrando las opciones de imágenes */}
         {!showImages && selectedImage && (
-          <div style={{ marginTop: '10px' }}>
+          <div style={{ marginTop: '15px' }}>
             {/*<span>Imagen seleccionada:</span>*/}
             <img
               src={selectedImage}
@@ -247,7 +247,17 @@ const SelectorNPO = ({ onAdd }) => {
           </div>
         )}
       </div>
-
+      {/* Rango */}
+      <div style={{ marginBottom: '10px'}}>
+        <span>{t('rank')}: </span>
+        <select value={unidad.tipo} onChange={handleUnidadChange}>
+          {npoData[tipo].map((u, index) => (
+            <option key={index} value={u.tipo}>
+              {u.tipo} - {u.heridas} heridas
+            </option>
+          ))}
+        </select>
+      </div>
       {/* Botón de añadir */}
       <button onClick={handleAdd}>{t('addNPO')}</button>
     </div>
