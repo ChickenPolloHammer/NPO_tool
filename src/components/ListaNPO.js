@@ -20,6 +20,7 @@ const ListaNPO = () => {
   const [sortOrder, setSortOrder] = useState('descendente'); // Orden por defecto
   const [sortBy, setSortBy] = useState('fechaEntrada'); // Ordenar por defecto
   const [selectedImage, setSelectedImage] = useState(null); // Para almacenar la imagen Stats seleccionada
+  const [selectedNpoImage, setSelectedNpoImage] = useState(null);
 
   const handleAddNPO = (npo) => {
     // Añadir un campo ID único al NPO
@@ -107,6 +108,7 @@ const ListaNPO = () => {
   // Función para cerrar la imagen
   const handleCloseImage = () => {
     setSelectedImage(null);
+    setSelectedNpoImage(null);
   };
 
   // Función para eliminar una unidad de la lista usando el ID
@@ -114,6 +116,11 @@ const ListaNPO = () => {
     // Filtrar la lista original para eliminar la unidad con el ID proporcionado
     const newList = npoList.filter((npo) => npo.id !== id);
     setNpoList(newList);
+  };
+
+  // Maneja la selección de la imagen
+  const handleImageClick = (image) => {
+    setSelectedNpoImage(image);
   };
 
   return (
@@ -157,7 +164,7 @@ const ListaNPO = () => {
           key={npo.id} // Usar el ID único como key
           style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
         >
-          {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px' }} />}
+          {npo.image && <img src={npo.image} alt="NPO Image" style={{ width: '50px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleImageClick(npo.image)} />}
           <div>
             <strong>{npo.tipo}</strong>
             <br />
@@ -175,6 +182,16 @@ const ListaNPO = () => {
         <div className="overlay" onClick={handleCloseImage}>
           <img src={selectedImage} alt="Stat Image" className="image" />
           <button className="close-button" onClick={handleCloseImage}>{t('close')}</button>
+        </div>
+      )}
+
+      {/* Al presionar una imagen, mostrarla a pantalla completa */}
+      {selectedNpoImage && (
+        <div className="overlay" onClick={handleCloseImage}>
+          <img src={selectedNpoImage} alt="NPO Image" className="image" />
+          <button className="close-button" onClick={handleCloseImage}>
+            {t('close')}
+          </button>
         </div>
       )}
     </div>
