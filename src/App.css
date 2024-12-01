@@ -216,3 +216,14 @@ h1 {
 input[type='radio'] {
   display: none; /* Oculta el radio button original */
 }
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
+  width: 100%; /* Ocupa el ancho completo del contenedor padre */
+}
+
+.button-container button {
+  flex-grow: 1; /* Cada botón ocupa el mismo espacio disponible */
+  /*min-width: 100px; /* Ajusta este valor según el texto más largo */
+}

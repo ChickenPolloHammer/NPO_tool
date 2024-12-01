@@ -19,7 +19,7 @@ const ListaNPO = () => {
   const [npoList, setNpoList] = useState([]);
   const [sortOrder, setSortOrder] = useState('descendente'); // Orden por defecto
   const [sortBy, setSortBy] = useState('fechaEntrada'); // Ordenar por defecto
-  const [selectedImage, setSelectedImage] = useState(null); // Para almacenar la imagen seleccionada
+  const [selectedImage, setSelectedImage] = useState(null); // Para almacenar la imagen Stats seleccionada
 
   const handleAddNPO = (npo) => {
     // Añadir un campo ID único al NPO
@@ -170,7 +170,7 @@ const ListaNPO = () => {
         ))}
       </ul>
 
-      {/* Si se ha seleccionado una imagen, mostrarla a pantalla completa */}
+      {/* Al presionar Stat, mostrarla a pantalla completa */}
       {selectedImage && (
         <div className="overlay" onClick={handleCloseImage}>
           <img src={selectedImage} alt="Stat Image" className="image" />

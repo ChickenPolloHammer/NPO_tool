@@ -135,24 +135,26 @@ const SelectorNPO = ({ onAdd }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {/* <h3 style={{ textDecoration: 'underline' }}>Elegir NPO</h3>*/}
-      {/* Botón para sacar/seleccionar imágen del dispositivo */}
-      <button
-        onClick={triggerFileInput}>
-        {t('chooseImage')}
-      </button>
-      {/* Input oculto */}
-      <input
-        id="fileInput"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        style={{ display: 'none' }}
-      />
-      {/* Botón para mostrar/ocultar imágenes */}
-      <button onClick={toggleImageOptions}>
-        {showImages ? t('hideImage') : t('predefinedImage')}
-      </button>
+      <span>{t('selectImage')}:</span>
+      <div className="button-container">
+        {/* Botón para sacar/seleccionar imágen del dispositivo */}
+        <button
+          onClick={triggerFileInput}>
+          {t('chooseImage')}
+        </button>
+        {/* Input oculto */}
+        <input
+          id="fileInput"
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          style={{ display: 'none' }}
+        />
+        {/* Botón para mostrar/ocultar imágenes */}
+        <button onClick={toggleImageOptions}>
+          {showImages ? t('hideImage') : t('predefinedImage')}
+        </button>
+      </div>
 
       {/* Selección de Imagen */}
         {showImages && (
@@ -253,7 +255,7 @@ const SelectorNPO = ({ onAdd }) => {
         <select value={unidad.tipo} onChange={handleUnidadChange}>
           {npoData[tipo].map((u, index) => (
             <option key={index} value={u.tipo}>
-              {u.tipo} - {u.heridas} heridas
+              {u.tipo} - {u.heridas} {t('wounds')}
             </option>
           ))}
         </select>
